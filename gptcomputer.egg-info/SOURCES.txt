@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.py
+gptcomputer/__init__.py
+gptcomputer/__main__.py
+gptcomputer/ai_answer.py
+gptcomputer/ai_state.py
+gptcomputer/control_computer.py
+gptcomputer/utils.py
+gptcomputer.egg-info/PKG-INFO
+gptcomputer.egg-info/SOURCES.txt
+gptcomputer.egg-info/dependency_links.txt
+gptcomputer.egg-info/entry_points.txt
+gptcomputer.egg-info/top_level.txt
