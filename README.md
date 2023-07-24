@@ -1,6 +1,11 @@
 # gptcomputer
 This Python script is a part of a larger project that uses the GPT-Neo model from the transformers library to interact with a computer interface. The script creates a GUI (Graphical User Interface) using the Tkinter library, and uses the GPT-Neo model to generate responses based on user input. The responses are then used to control the computer.
 
+
+Demo: 
+
+![image](https://github.com/graylan0/gptcomputer/assets/34530588/e6a2137f-9243-4111-b374-2c4d010cb573)
+
 ## Summary
 
 1. **Initialization**: The script starts by importing necessary libraries and modules. It then initializes two instances of the GPT-Neo model and its tokenizer.
