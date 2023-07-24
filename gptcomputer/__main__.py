@@ -2,6 +2,7 @@ import tkinter as tk
 from transformers import GPTNeoForCausalLM, GPT2Tokenizer
 import threading
 import logging
+import concurrent.futures
 
 from .ai_state import AIState
 from .control_computer import control_computer
@@ -73,14 +74,12 @@ def main():
         init_prompt = "Here is the current state of the computer: " + ascii_art + ". The screen resolution is: " + str(screenshot_size)
         activity_prompt = "You have completed " + str(time_limit) + " cycles. Your previous thoughts were: " + prev_thoughts + ". The new message is: " + message.get()
 
-        gpt_output1 = threading.Thread(target=AI_answer, args=(model1, tokenizer1, ai_state1, boot_prompt, init_prompt, activity_prompt, 1000))
-        gpt_output2 = threading.Thread(target=AI_answer, args=(model2, tokenizer2, ai_state2, boot_prompt, init_prompt, activity_prompt, 1000))
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            future1 = executor.submit(AI_answer, model1, tokenizer1, ai_state1, boot_prompt, init_prompt, activity_prompt, 1000)
+            future2 = executor.submit(AI_answer, model2, tokenizer2, ai_state2, boot_prompt, init_prompt, activity_prompt, 1000)
 
-        gpt_output1.start()
-        gpt_output2.start()
-
-        gpt_output1.join()
-        gpt_output2.join()
+            gpt_output1 = future1.result()
+            gpt_output2 = future2.result()
 
         control_computer(gpt_output1)
         control_computer(gpt_output2)
